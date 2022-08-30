@@ -1,0 +1,7 @@
+.DS_Store
+
+# Dir for bundles
+dist
+node_modules
+
+tmp

@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Underwriting API Documentation
+  description: This is within the V3 domain. The V3 Underwritting domain is a partial explication of the V3 Domain, as used in our applications, our data stores, and for communications within and outside the system.
+
+servers:
+  - url: "https://test.uw-api.prognos.dev"
+tags:
+  - name: Authentication
+  - name: User
+  - name: Posting Census
+  - name: Polling for Score
+
+components:
+  securitySchemes:
+    authToken:
+      $ref: components/securitySchemes/api_key.yaml
+
+paths:
+  "/v3/user":
+    get:
+      tags:
+        - User
+      summary: Users receive their own user objects
+      description: "The canonical list of clients is set up in dynamodb through terraform."
+      operationId: User
+      security:
+        - authToken: []
+      parameters: []
+      responses:
+        "200":
+          description: User is recognized and token is sent
+          content:
+            application/json:
+              schema:
+                $ref: components/schemas/User.yaml
+        "404":
+          description: For syntax errors in the url we typically return a 404, since the url is considered the address of the resource.
+          content:
+            application/json:
+              schema:
+                $ref: "User can get 404 Error"
+        "400":
+          description: For syntax errors in the request body or in the query params we typically return a 400 error.
+          content:
+            application/json:
+              schema:
+                $ref: components/schemas/error.yaml
+
+  "/v3/score":
+    post:
+      tags:
+        - Posting Census
+      summary: "Generating Score for the Roster File "
+      description: ""
+      operationId: "Roster File for Census"
+      security:
+        - authToken: []
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: usecase
+          required: true
+          schema:
+            type: string
+          allowReserved: true
+      responses:
+        "202":
+          description: Accepted. Returns score object with no data, justid
+          content:
+            application/json:
+              schema:
+                $ref: components/schemas/RBcensus.yaml
+        "400":
+          description: Invalid census and For syntax errors in the request body or in the query params we typically return a 400 error.
+        "404":
+          description: Unauthorized
+      x-swagger-router-controller: PostingCensus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: components/schemas/RBcensus.yaml
+        description: Schema of Posting Census API request
+        required: true
+
+  "/v3/score/{scoreid}":
+    get:
+      tags:
+        - Score
+      summary: Score Generation through Census ID
+      description:
+        Valid request with a known score id will return a 204 with no body
+        until the score is ready.<br>
+        The id of the score is the same as the id of the census, as these are in a one-to-one relationship.<br>
+        The usecase is the usecase name in the DynamoDb client table. From the usecase we get the modelName, and modelVersion.<br>
+        Fake scores will be produced if “prognos-fake” is the user’s client. Some environments can also be configured to return fake scores, like demo and staging.
+      operationId: v3ScoreScoreidGET
+      security:
+        - authToken: []
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: scoreid
+          required: true
+          schema:
+            type: string
+            minimum: 1
+          description: score ID
+      responses:
+        "200":
+          description: Score objects
+          content:
+            application/json:
+              schema:
+                $ref: components/schemas/score200.yaml
+        "204":
+          description: This is the stub that returns with the 204, which means No Content return code from the POST to /score so the id can be used for polling.
+          content:
+            application/json:
+              schema:
+                $ref: components/schemas/score204.yaml
+        "404":
+          description: For syntax errors in the url we typically return a 404, since the url is considered the address of the resource.
+          content:
+            application/json:
+              schema:
+                $ref: "User can get 404 Error, No Score found"

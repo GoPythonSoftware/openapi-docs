@@ -1,0 +1,28 @@
+type: object
+properties:
+  type:
+    description: Type of score
+    type: string
+    example: score
+  version:
+    description: Version of System
+    type: int
+    example: 3.0
+  id:
+    description: ID of score
+    type: int
+    example: 1464621616
+  fake:
+    description: Fake score.
+    type: boolen
+    example: false
+  reid:
+    description: if not null, indicates that this was a reid attempt
+    type: int
+    example: 1464621616
+  created:
+    description: Date for creating score.
+    type: date
+    example: 451236
+
+

@@ -1,0 +1,19 @@
+type: object
+properties:
+  type:
+    description: type of error
+    type: string
+    example: error
+  version:
+    description: User first name
+    type: int
+    example: 3.0
+  data:
+    description: details of error
+    type: array
+    example: 
+        - errors:
+            description: Detail of errors 
+            type: string
+            example: 400,404,etc
+

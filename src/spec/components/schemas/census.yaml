@@ -1,0 +1,53 @@
+type: object
+properties:
+  type:
+    description: Type of census
+    type: string
+    example: census
+  version:
+    description: Version of System (On GET. Do not post the version)
+    type: int
+    example: 3.0
+  id:
+    description: ID of score (On GET. Do not POST an id)
+    type: int
+    example: null
+  created:  
+    description: Date for creating score. (On GET. Do not POST created)
+    type: date
+    example: null
+  data:
+    description: data related to score result
+    type: array
+    example: 
+        - requestId:
+            description: Requested ID of score result. (if provided)
+            type: int
+            example: null
+        - fileName:
+            description: file Name of census. (if provided)
+            type: string
+            example: null
+        - quoteDate:
+            description: for POC 
+            type: date
+            example: null
+        - employer:
+            description: see below 
+            type: int
+            example: null
+        - members:
+            description: members 
+            type: array
+            example: 
+                - member1:
+                    description: census member
+                    type: srting
+                    example: null
+                - member2:
+                    description: census member
+                    type: string
+                    example: null
+
+
+

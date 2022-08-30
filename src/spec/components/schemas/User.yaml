@@ -1,0 +1,34 @@
+type: object
+properties:
+  type:
+    description: type of client
+    type: string
+    example: user
+  version:
+    description: User first name
+    type: int
+    example: 3.0
+  id:
+    description: id of user
+    type: string
+    example: 1n3be4288movg7t7046srg12s8
+  created:
+    description: Created date of user
+    type: date
+    example: 1646518225
+  updated:
+    description: Updated date of user 
+    type: date
+    example: 1646521825
+  data:
+    description: id of user
+    type: array
+    example: 
+        - clientProperties:
+            description: The property defines a URI of a HTTP proxy the client connector should use
+            type: string
+            example: https://clientname.api.etc.com
+        - roles:
+            description: role of user 
+            type: string
+            example: admin

@@ -1,0 +1,49 @@
+type: object
+properties:
+  type:
+    description: Type of score
+    type: string
+    example: score
+  version:
+    description: Version of System
+    type: int
+    example: 3.0
+  id:
+    description: ID of score
+    type: int
+    example: null
+  created:
+    description: Date for creating score.
+    type: date
+    example: null
+  data:
+    description: data related to score result
+    type: array
+    example: 
+        - requestId:
+            description: Requested ID of score result.
+            type: int
+            example: null
+        - usecase:
+            description: Function used for score result. 
+            type: string
+            example: fullyinsured_labmed
+        - quoteDate:
+            description: for POC 
+            type: date
+            example: null
+        - modelOutput:
+            description: Output model of score result. 
+            type: array
+            example: 
+                - groupClientResults:
+                    description: Group score result of client
+                    type: int
+                    example: null
+                - memberResults:
+                    description: score result of member
+                    type: int
+                    example: null
+
+
+

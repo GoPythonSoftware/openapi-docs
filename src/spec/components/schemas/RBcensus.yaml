@@ -1,0 +1,88 @@
+type: census
+data:
+  requestId: H0123456
+    description: request ID 
+    type: string
+    example: H0123456
+  employer:
+    type: employer
+      description: employer 
+      type: string
+      example: employer
+    data:
+      name:
+        description: name
+        type: string
+        example: null
+      address: 
+        description: address
+        type: string
+        example: null
+      city: 
+        description: address
+        type: string
+        example: null      
+      state: 
+        description: address
+        type: string
+        example: MA      
+      zip: 
+        description: address
+        type: int
+        example: 53066      
+  members:
+    - type:
+        description: member
+        type: string
+        example: member    
+      data:
+        token1: 
+          description: token 
+          type: string
+          example: 47Akb2tdrza/RaN99w6rubIoNodnX36v+fPEwYopU78= 
+        token2: 
+          description: token 
+          type: string
+          example: TEvlUGePaU905mEzQZak4XSrLpnQttKLRNXZHBalC9o= 
+        gender: 
+          description: gender 
+          type: string
+          example: M
+        dateOfBirth: 
+          description: dateOfBirth 
+          type: string
+          example: 1980/06/12
+        isSubscriber:
+          description: isSubscriber 
+          type: boolean 
+          example: true
+        zip3:
+          description: zip code 
+          type: string 
+          example: '000'
+    - type: member
+      data:
+        token1: 
+          description: token 
+          type: string
+          example: a0ywLqndfhGwNnMB4YCAar1rN1pderpQRc5b+h8p6U8= 
+        token2: 
+          description: token 
+          type: string
+          example: oKwkGEIEgP03H1hy2B6ZperbV+c3GtEYwcwmBIkah8M=
+        gender: F
+          description: gender 
+          type: string
+          example: F
+        dateOfBirth: 
+          description: dateOfBirth 
+          type: string
+          example: 1981/01/01
+        isSubscriber: false
+          description: isSubscriber 
+          type: boolean 
+          example: false
+        zip3:
+          description: zip code 
+          type: string 
+          example: '010'
